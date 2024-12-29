@@ -26,6 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
           labels[i].textContent = directions[directionIndex];
         }
       }
+
+      function createMeasureLines() {
+        const measureLines = document.querySelector('.measure-lines');
+        const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      
+        // Clear previous labels
+        measureLines.innerHTML = '';
+      
+        // Dynamically add labels and lines
+        for (let i = 0; i < 5; i++) { // Only show 5 labels for 180°
+          const label = document.createElement('span');
+          label.className = 'label';
+          label.textContent = directions[i];
+          label.style.left = `${(i / 4) * 100}%`; // Distribute evenly
+          measureLines.appendChild(label);
+        }
+      }
+      createMeasureLines();
       
   
     // Drag functionality
