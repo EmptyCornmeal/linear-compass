@@ -1,21 +1,38 @@
-let currentHeading = 0; // Initial heading in degrees (0 = North)
+let currentHeading = 0; // Initial heading in degrees
+const compassBar = document.querySelector('.compass-bar');
+const indicator = document.querySelector('.indicator');
+const headingDisplay = document.getElementById('heading-display');
 
-// Function to update the compass
+// Function to update the compass display
 function updateCompass(heading) {
-  const indicator = document.querySelector('.indicator');
-
-  // Normalize heading to fit a 180-degree linear compass (centered on W)
-  const normalized = (heading + 180) % 360 - 180; // Convert to -180 to 180 range
-  const offset = normalized + 90; // Shift -90 to +90 range to 0-180
-
-  // Move the indicator
-  indicator.style.transform = `translateX(${offset * 2}%` // Scale to 0-180
+  const normalized = heading % 360; // Ensure heading stays within 0-359
+  const offset = (normalized + 180) % 360 - 180; // Convert to -180 to 180 range
+  const position = ((offset + 90) / 180) * 100; // Scale to 0-100 for the compass
+  indicator.style.left = `${position}%`;
+  headingDisplay.textContent = `Heading: ${normalized.toFixed(1)}°`;
 }
 
-// Simulate heading changes
-document.getElementById('change-heading').addEventListener('click', () => {
-  currentHeading = (currentHeading + 30) % 360; // Increment heading by 30 degrees
+// Drag functionality
+let isDragging = false;
+compassBar.addEventListener('mousedown', (event) => {
+  isDragging = true;
+  document.body.style.cursor = 'grabbing';
+});
+
+window.addEventListener('mousemove', (event) => {
+  if (!isDragging) return;
+
+  // Calculate heading based on cursor position
+  const rect = compassBar.getBoundingClientRect();
+  const x = event.clientX - rect.left; // Get cursor position within the compass bar
+  const percentage = Math.min(Math.max(x / rect.width, 0), 1); // Clamp to [0, 1]
+  currentHeading = (percentage * 180) - 90; // Map to -90 to 90 range
   updateCompass(currentHeading);
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  document.body.style.cursor = 'default';
 });
 
 // Initialize the compass

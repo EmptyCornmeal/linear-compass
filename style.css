@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+  }
+  
+  .compass {
+    position: fixed;
+    top: 10px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .compass-label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .compass-bar {
+    position: relative;
+    flex-grow: 1;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: 0 10px;
+    overflow: hidden;
+  }
+  
+  .indicator {
+    position: absolute;
+    top: -5px;
+    left: 50%; /* Start at the center */
+    width: 10px;
+    height: 30px;
+    background-color: #f00;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    transition: transform 0.1s ease;
+  }
+  
+  .drag-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  
+  #heading-display {
+    position: fixed;
+    bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
