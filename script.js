@@ -19,21 +19,21 @@ window.addEventListener('mousemove', (event) => {
   if (!isDragging) return;
 
   const deltaX = event.clientX - startX; // Calculate drag distance
-  const newOffset = currentOffset + deltaX; // Update offset
-  points.style.left = `${newOffset}px`; // Move the points
+  currentOffset += deltaX; // Update offset
+  startX = event.clientX; // Reset start position
+  points.style.left = `${currentOffset}px`; // Move the points
 
-  // Wrap Around for Infinite Scrolling
+  // Seamless Looping
   const pointsWidth = points.offsetWidth / 2; // Half the width for wraparound
-  if (newOffset > pointsWidth) {
-    currentOffset = -pointsWidth;
-  } else if (newOffset < -pointsWidth) {
-    currentOffset = pointsWidth;
+  if (currentOffset > pointsWidth) {
+    currentOffset -= pointsWidth; // Reset offset to start
+  } else if (currentOffset < -pointsWidth) {
+    currentOffset += pointsWidth; // Reset offset to end
   }
 });
 
 // Handle Drag End
 window.addEventListener('mouseup', () => {
   isDragging = false;
-  currentOffset = parseFloat(points.style.left) || 0; // Save current offset
   dragBox.style.cursor = 'grab'; // Reset cursor
 });
