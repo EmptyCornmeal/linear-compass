@@ -3,39 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horizontal Drag Compass</title>
+  <title>Interactive Compass with Photosphere</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Compass -->
   <div class="compass">
     <div class="points">
-      <div class="point">N</div>
+      <!-- Main Cardinal Directions -->
+      <div class="point cardinal">N</div>
       <div class="point">15</div>
       <div class="point">30</div>
       <div class="point">NE</div>
       <div class="point">60</div>
       <div class="point">75</div>
-      <div class="point">E</div>
+      <div class="point cardinal">E</div>
       <div class="point">105</div>
       <div class="point">120</div>
       <div class="point">SE</div>
       <div class="point">150</div>
       <div class="point">165</div>
-      <div class="point">S</div>
+      <div class="point cardinal">S</div>
       <div class="point">195</div>
       <div class="point">210</div>
       <div class="point">SW</div>
       <div class="point">240</div>
       <div class="point">255</div>
-      <div class="point">W</div>
+      <div class="point cardinal">W</div>
       <div class="point">285</div>
       <div class="point">300</div>
       <div class="point">NW</div>
       <div class="point">330</div>
       <div class="point">345</div>
-      <div class="point">N</div>
+      <div class="point cardinal">N</div>
     </div>
   </div>
+
+  <!-- Drag Box -->
+  <div class="drag-box">
+    <p>Click and Drag to Move</p>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

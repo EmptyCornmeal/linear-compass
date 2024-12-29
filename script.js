@@ -1,38 +1,39 @@
 const compass = document.querySelector('.compass');
 const points = document.querySelector('.points');
+const dragBox = document.querySelector('.drag-box');
 
-// Variables to track drag position
+// Variables to Track Dragging
 let isDragging = false;
 let startX = 0;
 let currentOffset = 0; // Tracks the current left offset of the points container
 
-// Handle drag start
-compass.addEventListener('mousedown', (event) => {
+// Handle Drag Start
+dragBox.addEventListener('mousedown', (event) => {
   isDragging = true;
-  startX = event.clientX; // Get initial mouse X position
-  compass.style.cursor = 'grabbing'; // Change cursor to grabbing
+  startX = event.clientX; // Get the initial mouse X position
+  dragBox.style.cursor = 'grabbing'; // Change cursor to grabbing
 });
 
-// Handle drag movement
+// Handle Drag Movement
 window.addEventListener('mousemove', (event) => {
   if (!isDragging) return;
 
-  const deltaX = event.clientX - startX; // Difference between current and starting position
-  const newOffset = currentOffset + deltaX; // Update offset dynamically
-  points.style.left = `${newOffset}px`; // Move the points container
+  const deltaX = event.clientX - startX; // Calculate drag distance
+  const newOffset = currentOffset + deltaX; // Update offset
+  points.style.left = `${newOffset}px`; // Move the points
 
-  // Optional: Wrap around to create an infinite loop effect
-  const pointsWidth = points.offsetWidth;
-  if (newOffset > pointsWidth / 2) {
-    currentOffset = -pointsWidth / 2; // Reset offset to start
-  } else if (newOffset < -pointsWidth / 2) {
-    currentOffset = pointsWidth / 2; // Reset offset to end
+  // Wrap Around for Infinite Scrolling
+  const pointsWidth = points.offsetWidth / 2; // Half the width for wraparound
+  if (newOffset > pointsWidth) {
+    currentOffset = -pointsWidth;
+  } else if (newOffset < -pointsWidth) {
+    currentOffset = pointsWidth;
   }
 });
 
-// Handle drag end
+// Handle Drag End
 window.addEventListener('mouseup', () => {
   isDragging = false;
   currentOffset = parseFloat(points.style.left) || 0; // Save current offset
-  compass.style.cursor = 'grab'; // Reset cursor
+  dragBox.style.cursor = 'grab'; // Reset cursor
 });

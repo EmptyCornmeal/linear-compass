@@ -1,52 +1,57 @@
-/* General body styling */
+/* General Body Styling */
 body {
-    background: radial-gradient(circle, rgba(158, 183, 222, 1) 0%, rgba(119, 132, 162, 1) 100%);
-    padding: 2rem;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    --left: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #4a90e2, #6db7f2);
+    overflow: hidden;
   }
   
   /* Compass Styling */
   .compass {
-    position: relative;
-    width: 80%; /* Adjust width as needed */
+    position: fixed;
+    top: 20px;
+    width: 90%;
     height: 2rem;
     overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent 100%);
-    cursor: grab; /* Indicate draggable area */
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent 100%);
+    z-index: 10;
   }
   
-  /* Points Container */
   .points {
-    width: 200%; /* Wider than the compass for smooth scrolling */
+    width: 200%; /* Wider than the compass */
     position: absolute;
     top: 0;
     left: var(--left, 0);
     display: flex;
     gap: 1rem;
-    transition: left 0.05s; /* Smooth transition */
+    transition: left 0.05s; /* Smooth scrolling */
   }
   
-  /* Individual Points */
   .point {
     position: relative;
     flex-shrink: 0;
-    width: 7.5%;
+    width: 5%; /* Adjusted for more markers */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 900;
-    font-size: 1.25rem;
-    height: 3rem;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    height: 2rem;
   }
   
-  /* Styling for Vertical Ticks */
+  .cardinal {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #ffd700; /* Gold for prominent cardinal directions */
+  }
+  
   .point::before {
     content: '';
     position: absolute;
@@ -55,5 +60,23 @@ body {
     width: 2px;
     height: 1rem;
     background: currentColor;
+  }
+  
+  /* Drag Box */
+  .drag-box {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 5;
   }
   
