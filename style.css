@@ -25,13 +25,11 @@ body {
   }
   
   .points {
-    width: 200%; /* Wider than the compass for smooth scrolling */
-    position: absolute;
-    top: 0;
-    left: var(--left, 0);
     display: flex;
     gap: 1rem;
-    transition: left 0.05s; /* Smooth scrolling */
+    position: relative;
+    left: 0;
+    width: max-content; /* Allow the compass to flow seamlessly */
   }
   
   .point {
