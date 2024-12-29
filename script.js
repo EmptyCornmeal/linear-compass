@@ -25,10 +25,10 @@ window.addEventListener('mousemove', (event) => {
 
   // Seamless Looping
   const pointsWidth = points.offsetWidth / 2; // Half the width for wraparound
-  if (currentOffset > pointsWidth) {
-    currentOffset -= pointsWidth; // Reset offset to start
+  if (currentOffset > 0) {
+    currentOffset -= pointsWidth; // Wrap backward when scrolling left
   } else if (currentOffset < -pointsWidth) {
-    currentOffset += pointsWidth; // Reset offset to end
+    currentOffset += pointsWidth; // Wrap forward when scrolling right
   }
 });
 
