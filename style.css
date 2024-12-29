@@ -1,52 +1,47 @@
+/* General Body Styling */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
   }
   
+  /* Compass Wrapper */
   .compass {
-    position: fixed;
-    top: 10px;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: 20px; /* Add some margin from the top */
+    width: 90%; /* Full-width compass */
+    text-align: center; /* Center align the compass */
   }
   
-  .compass-label {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
+  /* Compass Bar Styling */
   .compass-bar {
     position: relative;
-    flex-grow: 1;
-    height: 30px; /* Increase height for better visibility */
+    width: 100%;
+    height: 30px; /* Increased for better visibility */
     background-color: #ddd;
-    border-radius: 15px; /* Softer corners */
-    margin: 0 10px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Add slight shadow for depth */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
   }
   
-  
+  /* Indicator Styling */
   .indicator {
     position: absolute;
-    top: -5px;
-    left: 50%; /* Start at the center */
+    top: 5px; /* Center vertically within the bar */
+    left: 50%; /* Center initially */
     width: 10px;
-    height: 30px;
+    height: 20px;
     background-color: #f00;
     border-radius: 3px;
     transform: translateX(-50%);
-    transition: transform 0.1s ease;
+    z-index: 10;
   }
   
+  /* Drag Area */
   .drag-area {
     position: absolute;
     top: 0;
@@ -54,27 +49,10 @@ body {
     width: 100%;
     height: 100%;
     cursor: grab;
+    z-index: 5;
   }
   
-  #heading-display {
-    position: relative;
-    margin-top: 10px; /* Add spacing from the compass */
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center; /* Center-align under the compass */
-    width: 100%; /* Ensure it stretches across the page */
-  }
-  
-  .label {
-    position: absolute;
-    bottom: -30px; /* Position below the compass bar */
-    font-size: 14px;
-    font-weight: bold;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #333; /* Make text darker for better visibility */
-  }
-  
+  /* Measure Lines */
   .measure-lines {
     position: absolute;
     top: 0;
@@ -84,8 +62,25 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    pointer-events: none; /* Prevent interfering with dragging */
+    pointer-events: none;
   }
   
-    
+  /* Labels for Directions */
+  .label {
+    position: absolute;
+    bottom: -20px; /* Below the compass bar */
+    font-size: 14px;
+    font-weight: bold;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Heading Display Styling */
+  #heading-display {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
   
