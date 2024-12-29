@@ -55,9 +55,31 @@ body {
   }
   
   #heading-display {
-    position: fixed;
-    bottom: 20px;
-    font-size: 18px;
+    position: relative; /* Change from fixed */
+    font-size: 16px;
     font-weight: bold;
+    margin-top: 10px; /* Add spacing from compass */
+    text-align: center;
   }
+  .measure-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none; /* Prevent lines from interfering with dragging */
+  }
+  
+  .label {
+    position: absolute;
+    bottom: -20px; /* Position below the compass bar */
+    font-size: 12px;
+    font-weight: bold;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+    
   

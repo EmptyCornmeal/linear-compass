@@ -6,12 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Function to update the compass display
     function updateCompass(heading) {
-      const normalized = heading % 360; // Ensure heading stays within 0-359
-      const offset = (normalized + 180) % 360 - 180; // Convert to -180 to 180 range
-      const position = ((offset + 90) / 180) * 100; // Scale to 0-100 for the compass
-      indicator.style.left = `${position}%`;
-      headingDisplay.textContent = `Heading: ${normalized.toFixed(1)}°`;
-    }
+        const normalized = heading % 360; // Keep heading within 0-359
+        const startHeading = (normalized - 90 + 360) % 360; // Start of visible 180° range
+        const endHeading = (startHeading + 180) % 360; // End of visible range
+        
+        // Update the indicator position
+        const offset = ((normalized + 180) % 360 - 180) + 90; // Normalize to 0-180
+        indicator.style.left = `${offset / 180 * 100}%`;
+      
+        // Update heading display
+        headingDisplay.textContent = `Heading: ${normalized.toFixed(1)}°`;
+      
+        // Update visible compass labels
+        const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        const startIndex = Math.round(startHeading / 45) % directions.length;
+        const labels = document.querySelectorAll('.label');
+        for (let i = 0; i < labels.length; i++) {
+          const directionIndex = (startIndex + i) % directions.length;
+          labels[i].textContent = directions[directionIndex];
+        }
+      }
+      
   
     // Drag functionality
     let isDragging = false;

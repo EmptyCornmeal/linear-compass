@@ -7,15 +7,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="compass">
-    <div class="compass-label">SW</div>
-    <div class="compass-bar">
-      <div class="indicator"></div>
-      <div class="drag-area"></div>
-    </div>
-    <div class="compass-label">NW</div>
-  </div>
-  <p id="heading-display">Heading: 0°</p>
+    <div class="compass">
+        <div class="compass-bar">
+          <div class="indicator"></div>
+          <div class="drag-area"></div>
+          <div class="measure-lines">
+            <span class="label">N</span>
+            <span class="label">NE</span>
+            <span class="label">E</span>
+            <span class="label">SE</span>
+            <span class="label">S</span>
+          </div>
+        </div>
+        <p id="heading-display">Heading: 0°</p>
+      </div>
+      
   <script src="script.js"></script>
 </body>
 </html>
